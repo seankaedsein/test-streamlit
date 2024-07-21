@@ -1,17 +1,29 @@
 import streamlit as st
 from PIL import Image
 
-# Placeholder for image display
-image = Image.open('generic_CXR.jpg')
-image
-placeholder = st.empty()
-placeholder.text('Output displayed above.')
+input_code = "A"
 
+# Text input
+prompt_text = st.text_area('Enter prompt', placeholder='Input prompt here...')
+
+# Buttons
 if st.button("Generate Image"):
-    st.write_stream()
+    input_code = prompt_text
 
-# Single-line text input with customization
-single_line_text = st.text_input('Enter single-line text', placeholder='Type something here...')
+if st.button("Reset", type="primary"):
+    input_code = "A"
 
-x = st.slider('x')
-st.write(x, 'squared is', x * x)
+st.divider()
+
+# Placeholder for image display
+if input_code == "B":
+    image = Image.open('generic_CXR.jpg')
+else:
+    image = Image.open('placeholder_CXR.jpg')
+
+image
+st.caption('Output displayed above.')
+
+
+
+
